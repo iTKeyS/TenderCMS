@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#NewPost">Добавить</button>
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="NewPost" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Добавить аукцион</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="offset-2 col-md-8">
+        <form method="post">{% csrf_token %}
+          {% for field in form %}
+          <label>{{field.label_tag}}</label>
+          {{field}}
+          {% endfor %}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            <button type="submit" class="btn btn-primary">Сохронить</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Номер извещения</th>
+            <th scope="col">Предмет закупки</th>
+            <th scope="col">Подробнее</th>
+        </tr>
+    </thead>
+    {% for item in items %}
+    <tr>
+    <td>{{item.id}}</td>
+    <td>{{item.slug}}</td>
+    <td>{{item.title}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{item.id}}">Подробнее</button>
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{item.id}}" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <table class="table table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Наименование</th>
+                  <th scope="col">Описание</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Номер извещения</th>
+                  <td>{{item.slug}}</td>
+                </tr>
+                <tr>
+                  <th>Предмет закупки</th>
+                  <td>{{item.title}}</td>
+                </tr>
+                <tr>
+                  <th>Заказчик</th>
+                  <td>{{item.content}}</td>
+                </tr>
+                <tr>
+                  <th>Дата подбора (выхода)</th>
+                  <td>{{item.d_p_b_o}}</td>
+                </tr>
+                <tr>
+                  <th>Дата и время окончания подачи заявок</th>
+                  <td>{{item.d_t_o_p_z}}</td>
+                </tr>
+                <tr>
+                  <th>Дата проведения аукциона</th>
+                  <td>{{item.d_p_a_v_e_f}}</td>
+                </tr>
+                <tr>
+                  <th>Площадка</th>
+                  <td>{{item.n_e_p_v_i_s}}</td>
+                </tr>
+                <tr>
+                  <th>Начальная цена контракта</th>
+                  <td>{{item.n_c_k}}</td>
+                </tr>
+                <tr>
+                  <th>Размер обеспечения заявок</th>
+                  <td>{{item.r_o_z}}</td>
+                </tr>
+                <tr>
+                  <th>Размер обеспечения исполнения контракта</th>
+                  <td>{{item.r_o_i_k}}</td>
+                </tr>
+                <tr>
+                  <th>Кнопки</th>
+                  <td>
+                    <div class="container model-footer">
+                      <a href="http://192.168.1.41:8000/admin/cms/post/{{item.id}}/change/">
+                        <button class="btn btn-warning">Изменить</button>
+                      </a>
+                      <a href="http://192.168.1.41:8000/admin/cms/post/{{item.id}}/delete/">
+                        <button class="btn btn-danger">Удалить</button>
+                      </a>
+                      <a href="#">
+                        <button class="btn btn-success">В работу</button>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

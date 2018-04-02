@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block seo_title %}{% endblock %}</title>
+    <meta name="description" content="{% block seo_description %}{% endblock %}">
+{% load static %}
+    <!-- Bootstrap Core CSS -->
+      <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+
+    <!-- Theme CSS -->
+      <link href="{% static "css/clean-blog.css" %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+      <link href="{% static "css/font-awesome.css" %}" rel="stylesheet" type="text/css">
+
+  {% block header %}
+  <header class="intro-header"
+  style="background-image: url({% static "img/about-bg.jpg" %})">
+      <div class="container">
+          <div class="row">
+              <div class="row">
+                  <div class="page-heading">
+                      <h1>АнгараСтройЛидер</h1>
+                        <p>
+                          <a role="button" class="btn btn-info" href="http://192.168.1.41:8000/cms/post-list/">Новые</a>
+                          <a role="button" class="btn btn-primary" href="http://192.168.1.41:8000/aukcion_v_rabotu/">В работу</a>
+                          <a role="button" class="btn btn-success" href="http://192.168.1.41:8000/aukcion_viigranie/">Выйгранные</a>
+                          <a role="button" class="btn btn-danger" href="http://192.168.1.41:8000/ru/aukciony-proigrannye/">Проигранные</a>
+                          <a role="button" class="btn btn-warning" href="http://192.168.1.41:8000/ru/aukciony-otbrakovannye/">Отбракованные</a>
+                          <a role="button" class="btn btn-light" href="http://192.168.1.41:8000/zaklucenie_kontrakti/">Заключенные контракты</a>
+                        </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+  {% endblock header %}
+  <!-- Main Content -->
+  <div class="container-fluid">
+      {% block content %}
+      {% endblock content %}
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+      <div class="bd-example">
+          <div class="row">
+              <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <ul class="list-inline text-center">
+                      <li>
+                          <a href="https://github.com/iTKeyS">
+                              <span class="fa-stack fa-lg">
+                                  <i class="fa fa-circle fa-stack-2x"></i>
+                                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                              </span>
+                          </a>
+                      </li>
+                  </ul>
+                  <p class="copyright text-muted">Copyright "ГК Ангара" &copy;</p>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+  <!-- jQuery -->
+  <script src="{% static "js/jquery.min.js" %}"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+  <!-- Theme JavaScript -->
+  <script src="{% static "js/clean-blog.min.js" %}"></script>
+
+</body>
+</html>
